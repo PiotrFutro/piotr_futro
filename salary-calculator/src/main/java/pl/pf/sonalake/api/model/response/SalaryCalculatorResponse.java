@@ -1,5 +1,8 @@
 package pl.pf.sonalake.api.model.response;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.math.BigDecimal;
 
 /**
@@ -7,8 +10,12 @@ import java.math.BigDecimal;
  *
  * @author pfutro
  */
+@ApiModel(description = "Klasa odpowiedzi kalklulatora")
 public class SalaryCalculatorResponse {
+    @ApiModelProperty(value = "Wynagrodzenie miesięczne netto w PLN")
     private BigDecimal monthlyNettoPLN;
+
+    @ApiModelProperty(value = "Sredni kurs NBP waluty do PLN przyjęty do pzeliczenia wynagrodzenia")
     private BigDecimal exchangeRate;
 
     public BigDecimal getMonthlyNettoPLN() {

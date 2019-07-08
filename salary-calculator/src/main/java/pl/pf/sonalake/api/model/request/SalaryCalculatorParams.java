@@ -1,10 +1,7 @@
 package pl.pf.sonalake.api.model.request;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.web.bind.annotation.RequestParam;
+import io.swagger.annotations.ApiParam;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
@@ -15,6 +12,7 @@ import java.math.BigDecimal;
  */
 public class SalaryCalculatorParams {
 
+    @ApiParam(value = "Wynagrodzenie dzienne brutto", required = true)
     @NotNull
     private BigDecimal dailySalary;
 
