@@ -5,6 +5,7 @@ import pl.pf.sonalake.api.model.dict.CountryData;
 import pl.pf.sonalake.service.calculator.ISalaryCalculator;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  * Klasa abstakcyjna z metodami wspólnymi dla kalklulatorów
@@ -36,6 +37,7 @@ public abstract class SalaryCalculator implements ISalaryCalculator {
                 .multiply(BigDecimal.valueOf(daysInMonth))
                 .subtract(constCosts)
                 .multiply(BigDecimal.valueOf(100 - tax).divide(new BigDecimal(100)))
-                .multiply(exchangeRate);
+                .multiply(exchangeRate)
+                .setScale(2, RoundingMode.HALF_EVEN);
     }
 }
