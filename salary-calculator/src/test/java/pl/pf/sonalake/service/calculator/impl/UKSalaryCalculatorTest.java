@@ -10,7 +10,7 @@ import pl.pf.sonalake.service.calculator.ISalaryCalculator;
 import java.math.BigDecimal;
 
 /**
- * Testy mestod klasy  UKSalaryCalculator
+ * Testy metod klasy  UKSalaryCalculator
  *
  * @author pfutro
  */

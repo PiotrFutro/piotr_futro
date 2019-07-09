@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.util.Set;
 
 /**
- * Komponent wybierający właściwy kalkutlator dla kraju i uruchamiający kalkulacje
+ * Komponent wybierający właściwy kalkulator dla kraju i uruchamiający kalkulacje
  *
  * @author pfutro
  */

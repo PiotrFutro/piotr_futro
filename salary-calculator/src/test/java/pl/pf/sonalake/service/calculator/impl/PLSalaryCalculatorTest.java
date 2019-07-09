@@ -10,27 +10,25 @@ import pl.pf.sonalake.service.calculator.ISalaryCalculator;
 import java.math.BigDecimal;
 
 /**
- * Testy metod klasy  DESalaryCalculator
+ * Testy metod klasy  PLSalaryCalculator
  *
  * @author pfutro
  */
-public class DESalaryCalculatorTest {
+public class PLSalaryCalculatorTest {
 
-    private ISalaryCalculator deSalaryCalculator;
+    private ISalaryCalculator plSalaryCalculator;
 
     @ParameterizedTest
     @CsvSource(value = {
-            "100, 4.00, 4480.00",
-            "100, 5.00, 5600.00",
-            "200, 4.50, 12960.00",
-            "200.50, 4.50, 12999.60"
+            "100, 1.00, 810.00",
+            "200, 1.00, 2592.00",
     })
     public void calculate(BigDecimal dailySalaryBrutto, BigDecimal exchangeRate,  BigDecimal expectdMonthlySalaryNettoPLN) {
         //given
-        deSalaryCalculator = new DESalaryCalculator(22);
+        plSalaryCalculator = new PLSalaryCalculator(22);
 
         //when
-        BigDecimal calculatedMonthlySalaryNettoPLN = deSalaryCalculator.calculate(dailySalaryBrutto, exchangeRate);
+        BigDecimal calculatedMonthlySalaryNettoPLN = plSalaryCalculator.calculate(dailySalaryBrutto, exchangeRate);
 
         //then
         Assertions.assertThat(calculatedMonthlySalaryNettoPLN).isNotNull();
@@ -40,10 +38,10 @@ public class DESalaryCalculatorTest {
     @Test
     public void isGivenCountry() {
         //given
-        deSalaryCalculator = new DESalaryCalculator(22);
+        plSalaryCalculator = new PLSalaryCalculator(22);
 
         //when
-        Boolean givenCountry = deSalaryCalculator.isGivenCountry(CountryCode.DE);
+        Boolean givenCountry = plSalaryCalculator.isGivenCountry(CountryCode.PL);
 
         //then
         Assertions.assertThat(givenCountry).isTrue();
