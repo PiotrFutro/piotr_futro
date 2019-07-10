@@ -20,16 +20,16 @@ import java.util.Optional;
 public class NbpRepository  implements INbpRepository {
 
     private final RestTemplate restTemplate;
-    private String urlSinglCurrency;
+    private String urlSingleCurrency;
 
-    public NbpRepository(RestTemplate restTemplate,  @Value("${nbp.address.single.currency}") String urlSinglCurrency) {
+    public NbpRepository(RestTemplate restTemplate,  @Value("${nbp.address.single.currency}") String urlSingleCurrency) {
         this.restTemplate = restTemplate;
-        this.urlSinglCurrency = urlSinglCurrency;
+        this.urlSingleCurrency = urlSingleCurrency;
     }
 
 
     public Optional<CurrencyEntity> getCurrentExchangeRate(CurrencyCode currencyCode){
-        UriComponentsBuilder uri = UriComponentsBuilder.fromUriString(urlSinglCurrency).pathSegment(RateTableType.TABLE_A.getType()).pathSegment(currencyCode.name());
+        UriComponentsBuilder uri = UriComponentsBuilder.fromUriString(urlSingleCurrency).pathSegment(RateTableType.TABLE_A.getType()).pathSegment(currencyCode.name());
 
         return Optional.ofNullable(restTemplate.getForEntity(uri.build().toUri(), CurrencyEntity.class).getBody());
     };
