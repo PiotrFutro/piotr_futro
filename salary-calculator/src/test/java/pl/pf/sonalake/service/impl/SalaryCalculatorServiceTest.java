@@ -8,6 +8,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import pl.pf.sonalake.api.model.dict.CountryCode;
+import pl.pf.sonalake.api.model.dict.CountryData;
 import pl.pf.sonalake.api.model.dict.CurrencyCode;
 import pl.pf.sonalake.api.model.request.SalaryCalculatorParams;
 import pl.pf.sonalake.api.model.response.SalaryCalculatorResponse;
@@ -18,12 +19,15 @@ import pl.pf.sonalake.io.entity.Rate;
 import pl.pf.sonalake.io.repository.impl.NbpRepository;
 import pl.pf.sonalake.service.SalaryCalculation;
 import pl.pf.sonalake.service.calculator.ISalaryCalculator;
-import pl.pf.sonalake.service.calculator.impl.DESalaryCalculator;
-import pl.pf.sonalake.service.calculator.impl.PLSalaryCalculator;
-import pl.pf.sonalake.service.calculator.impl.UKSalaryCalculator;
+import pl.pf.sonalake.service.calculator.impl.ForeignSalaryCalculator;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Test metody klasy Serwisu ${@link pl.pf.sonalake.service.calculator.impl.SalaryCalculator}
@@ -46,10 +50,10 @@ public class SalaryCalculatorServiceTest {
     @BeforeEach
     void setUp(){
         MockitoAnnotations.initMocks(this);
-        Set<ISalaryCalculator> salaryCalculators = new HashSet<>();
-        salaryCalculators.add(new DESalaryCalculator(22));
-        salaryCalculators.add(new UKSalaryCalculator(22));
-        salaryCalculators.add(new PLSalaryCalculator(22));
+        Set<ISalaryCalculator> salaryCalculators = Stream.of(CountryData.values())
+                .map(cd -> cd.getCountryCode())
+                .map(cc -> new ForeignSalaryCalculator(22, cc))
+                .collect(Collectors.toSet());
         salaryCalculation = new SalaryCalculation(salaryCalculators);
         responseConverter = new ResponseConverter();
         salaryCalculatorService = new SalaryCalculatorService(salaryCalculation, nbpRepositoryMock, responseConverter);

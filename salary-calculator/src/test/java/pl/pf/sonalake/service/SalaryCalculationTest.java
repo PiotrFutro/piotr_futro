@@ -5,17 +5,17 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import pl.pf.sonalake.api.model.dict.CountryCode;
+import pl.pf.sonalake.api.model.dict.CountryData;
 import pl.pf.sonalake.service.calculator.ISalaryCalculator;
-import pl.pf.sonalake.service.calculator.impl.DESalaryCalculator;
-import pl.pf.sonalake.service.calculator.impl.PLSalaryCalculator;
-import pl.pf.sonalake.service.calculator.impl.UKSalaryCalculator;
+import pl.pf.sonalake.service.calculator.impl.ForeignSalaryCalculator;
 
 import java.math.BigDecimal;
-import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
- * Testy metod klasy SalaryCalculation
+ * Testy metod klasy ${@link SalaryCalculation}
  *
  * @author pfutro
  */
@@ -25,11 +25,12 @@ public class SalaryCalculationTest {
 
     @BeforeAll
     static void  setUp() {
-        Set<ISalaryCalculator> salaryCalculators = new HashSet<>();
-        salaryCalculators.add(new PLSalaryCalculator(22));
-        salaryCalculators.add(new UKSalaryCalculator(22));
-        salaryCalculators.add(new DESalaryCalculator(22));
-        salaryCalculation = new SalaryCalculation( salaryCalculators);
+        Set<ISalaryCalculator> salaryCalculators = Stream.of(CountryData.values())
+                .map(cd -> cd.getCountryCode())
+                .map(cc -> new ForeignSalaryCalculator(22, cc))
+                .collect(Collectors.toSet());
+
+        salaryCalculation = new SalaryCalculation(salaryCalculators);
     }
 
     /**
