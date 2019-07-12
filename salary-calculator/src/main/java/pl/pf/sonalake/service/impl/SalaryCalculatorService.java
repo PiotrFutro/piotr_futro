@@ -52,7 +52,7 @@ public class SalaryCalculatorService implements ISalaryCalculatorService {
 
         BigDecimal mid = new BigDecimal(1);
         if (!CountryCode.PL.equals(countryCode)) {
-            Optional<CurrencyEntity> currencyEntity = nbpRepository.getCurrentExchangeRate(CountryData.forCountryCode(countryCode).getCurrencyCode()); //tu może rzucić wyjatek!! -> do obsluzenai
+            Optional<CurrencyEntity> currencyEntity = nbpRepository.getCurrentExchangeRate(CountryData.forCountryCode(countryCode).getCurrencyCode());
             mid = currencyEntity.orElseThrow(() -> new NbpExeption("Brak kursu wymiany waluty.")).getRates().get(0).getMid();
         }
 

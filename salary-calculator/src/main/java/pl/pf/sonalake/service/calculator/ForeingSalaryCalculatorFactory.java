@@ -22,7 +22,7 @@ public class ForeingSalaryCalculatorFactory {
     @Bean
     Set<ISalaryCalculator> foreignSalaryCountryBeans(@Value("${month.days}") Integer daysInMonth) {
         return Stream.of(CountryData.values())
-                .map(cd -> cd.getCountryCode())
+                .map(CountryData::getCountryCode)
                 .map(cc -> new ForeignSalaryCalculator(daysInMonth, cc))
                 .collect(Collectors.toSet());
     }

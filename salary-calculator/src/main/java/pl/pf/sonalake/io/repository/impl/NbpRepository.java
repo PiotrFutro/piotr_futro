@@ -29,7 +29,10 @@ public class NbpRepository  implements INbpRepository {
 
 
     public Optional<CurrencyEntity> getCurrentExchangeRate(CurrencyCode currencyCode){
-        UriComponentsBuilder uri = UriComponentsBuilder.fromUriString(urlSingleCurrency).pathSegment(RateTableType.TABLE_A.getType()).pathSegment(currencyCode.name());
+        UriComponentsBuilder uri = UriComponentsBuilder
+                .fromUriString(urlSingleCurrency)
+                .pathSegment(RateTableType.TABLE_A.getType())
+                .pathSegment(currencyCode.name().toLowerCase());
 
         return Optional.ofNullable(restTemplate.getForEntity(uri.build().toUri(), CurrencyEntity.class).getBody());
     };
