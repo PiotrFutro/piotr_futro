@@ -21,7 +21,7 @@ import javax.validation.Valid;
  *
  * @author pfutro
  */
-@Api(tags = "Kalkulator wynagrodznia")
+@Api(tags = "Kalkulator wynagrodzenia")
 @RestController
 @RequestMapping(path = "/country", produces = MediaType.APPLICATION_JSON_VALUE)
 public class SalaryCalculatorRestController {
