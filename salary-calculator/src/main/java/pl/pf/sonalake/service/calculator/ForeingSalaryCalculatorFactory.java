@@ -19,8 +19,14 @@ import java.util.stream.Stream;
 @Configuration
 public class ForeingSalaryCalculatorFactory {
 
+    private final Integer daysInMonth;
+
+    public ForeingSalaryCalculatorFactory(@Value("${month.days}") Integer daysInMonth) {
+        this.daysInMonth = daysInMonth;
+    }
+
     @Bean
-    Set<ISalaryCalculator> foreignSalaryCountryBeans(@Value("${month.days}") Integer daysInMonth) {
+    public Set<ISalaryCalculator> foreignSalaryCalculatorBeans() {
         return Stream.of(CountryData.values())
                 .map(CountryData::getCountryCode)
                 .map(cc -> new ForeignSalaryCalculator(daysInMonth, cc))

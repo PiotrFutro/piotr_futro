@@ -5,14 +5,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import pl.pf.sonalake.api.model.dict.CountryCode;
-import pl.pf.sonalake.api.model.dict.CountryData;
-import pl.pf.sonalake.service.calculator.ISalaryCalculator;
-import pl.pf.sonalake.service.calculator.impl.ForeignSalaryCalculator;
+import pl.pf.sonalake.service.calculator.ForeingSalaryCalculatorFactory;
 
 import java.math.BigDecimal;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Testy metod klasy ${@link SalaryCalculation}
@@ -22,15 +17,12 @@ import java.util.stream.Stream;
 public class SalaryCalculationTest {
 
     private static SalaryCalculation salaryCalculation;
+    private static ForeingSalaryCalculatorFactory foreingSalaryCalculatorFactory;
 
     @BeforeAll
     static void  setUp() {
-        Set<ISalaryCalculator> salaryCalculators = Stream.of(CountryData.values())
-                .map(cd -> cd.getCountryCode())
-                .map(cc -> new ForeignSalaryCalculator(22, cc))
-                .collect(Collectors.toSet());
-
-        salaryCalculation = new SalaryCalculation(salaryCalculators);
+        foreingSalaryCalculatorFactory = new ForeingSalaryCalculatorFactory(22);
+        salaryCalculation = new SalaryCalculation(foreingSalaryCalculatorFactory.foreignSalaryCalculatorBeans());
     }
 
     /**
