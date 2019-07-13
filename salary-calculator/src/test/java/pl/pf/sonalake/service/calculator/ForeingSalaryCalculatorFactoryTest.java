@@ -25,7 +25,7 @@ public class ForeingSalaryCalculatorFactoryTest {
      * Metoda sprawdza liczbę kalkulatorów. Powinna być zgodna z liczą obiektów enum Countrydata
      */
     @Test
-    public void foreignSalaryCountryBeans() {
+    public void should_generate_foreignSalaryCountryBeans() {
         //when
         Set<ISalaryCalculator> salaryCalculators = foreingSalaryCalculatorFactory.foreignSalaryCalculatorBeans();
 

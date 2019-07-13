@@ -20,7 +20,7 @@ import java.util.Optional;
 public class NbpRepository  implements INbpRepository {
 
     private final RestTemplate restTemplate;
-    private String urlSingleCurrency;
+    private final String urlSingleCurrency;
 
     public NbpRepository(RestTemplate restTemplate,  @Value("${nbp.address.single.currency}") String urlSingleCurrency) {
         this.restTemplate = restTemplate;
