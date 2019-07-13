@@ -5,11 +5,11 @@ package pl.pf.sonalake.io.repository.dict;
  *
  * @author pfutro
  */
-public enum RateTableType {
+public enum NbpRateTableType {
     TABLE_A("a"), TABLE_B("b"), TABLE_C("c");
 
     private String type;
-    RateTableType(String type) {
+    NbpRateTableType(String type) {
         this.type = type;
     }
 

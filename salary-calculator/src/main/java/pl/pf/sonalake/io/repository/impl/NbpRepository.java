@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import pl.pf.sonalake.api.model.dict.CurrencyCode;
-import pl.pf.sonalake.io.repository.dict.RateTableType;
+import pl.pf.sonalake.io.repository.dict.NbpRateTableType;
 import pl.pf.sonalake.io.entity.CurrencyEntity;
 import pl.pf.sonalake.io.repository.INbpRepository;
 
@@ -31,7 +31,7 @@ public class NbpRepository  implements INbpRepository {
     public Optional<CurrencyEntity> getCurrentExchangeRate(CurrencyCode currencyCode){
         UriComponentsBuilder uri = UriComponentsBuilder
                 .fromUriString(urlSingleCurrency)
-                .pathSegment(RateTableType.TABLE_A.getType())
+                .pathSegment(NbpRateTableType.TABLE_A.getType())
                 .pathSegment(currencyCode.name().toLowerCase());
 
         return Optional.ofNullable(restTemplate.getForEntity(uri.build().toUri(), CurrencyEntity.class).getBody());
