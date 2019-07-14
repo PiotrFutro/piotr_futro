@@ -1,7 +1,7 @@
 package pl.pf.sonalake.io.repository.dict;
 
 /**
- * Typ tabeli kursowej
+ * Typ tabeli kursowej NBP
  *
  * @author pfutro
  */

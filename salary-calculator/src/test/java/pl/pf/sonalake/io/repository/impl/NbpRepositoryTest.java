@@ -26,7 +26,7 @@ import static org.springframework.test.web.client.match.MockRestRequestMatchers.
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
 /**
- * Test metod klasy klienta API NBP ${@link NbpRepository}<br.
+ * Test metod klasy klienta API NBP ${@link NbpRepository}<br>.
  * z wykorzystaniem klasy MockRestServiceServer
  *
  * @author pfutro

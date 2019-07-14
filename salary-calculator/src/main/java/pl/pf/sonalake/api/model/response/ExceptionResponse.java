@@ -3,7 +3,7 @@ package pl.pf.sonalake.api.model.response;
 import java.time.LocalDateTime;
 
 /**
- * Przykłądowa klasa odpowiedzi dedykoana obsłudze wyjątku
+ * Klasa odpowiedzi dedykoana zapisowi wyjątku w JSON
  *
  * @author pfutro
  */
